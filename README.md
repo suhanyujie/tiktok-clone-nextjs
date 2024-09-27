@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## ref
+
+- https://github.com/John-Weeks-Dev/tiktok-clone-nextjs
+  - https://www.youtube.com/watch?v=7zLyVzItZlQ
+- https://github.com/rtdui/rtdui
+
 ## Getting Started
 
 First, run the development server:
