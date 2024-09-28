@@ -36,6 +36,8 @@ export default function TopNav() {
               className="w-full pl-3 my-2 bg-transparent placeholder-[#838383] text-[15px] focus:outline-none"
               placeholder="Search accounts"
             />
+
+            {!true ? (
             <div className="absolute bg-white max-w-[910px] h-auto w-full z-20 left-0 top-12 border p-1">
               <div className="p-1" key="1">
                 <Link
@@ -54,6 +56,7 @@ export default function TopNav() {
                 </Link>
               </div>
             </div>
+            ) : null }
 
             <div className="px-3 py-1 flex items-center border-l border-l-gray-300">
               <BiSearch color="#A1A2A7" size="22" />
@@ -69,7 +72,7 @@ export default function TopNav() {
               <span className="px-2 font-medium text-[15px]">Upload</span>
             </button>
 
-            {!true ? (
+            {true ? (
               <div className="flex items-center">
                 <button
                   onClick={() => goTo()}
