@@ -61,7 +61,7 @@ export default function PostMainLikes({ post }: PostMainLikeTypes) {
             <div className="rounded-full bg-gray-200 p-2 cursor-pointer">
               <FaShare size="25" />
             </div>
-            <span className="text-xs text-gray-800 font-semibold">37</span>
+            <span className="text-xs text-gray-800 font-semibold">137</span>
           </button>
         </div>
       </div>

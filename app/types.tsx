@@ -32,6 +32,11 @@ export interface Comment {
   created_at: string;
 }
 
+export interface UploadError {
+  type: string;
+  message: string;
+}
+
 // Layout Include Types
 export interface MenuItemTypes {
   iconString: string;
