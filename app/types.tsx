@@ -48,6 +48,12 @@ export interface MenuItemFollowCompTypes {
   user: RandomUsers;
 }
 
+export interface ProfilePageTypes {
+  params: {
+    id: string;
+  };
+}
+
 /////////////////////////////////////////////////////
 
 // Component Types
