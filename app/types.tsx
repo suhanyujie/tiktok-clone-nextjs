@@ -37,6 +37,14 @@ export interface UploadError {
   message: string;
 }
 
+export interface Post {
+  id: string;
+  user_id: string;
+  video_url: string;
+  text: string;
+  created_at: string;
+}
+
 // Layout Include Types
 export interface MenuItemTypes {
   iconString: string;
@@ -63,4 +71,8 @@ export interface PostMainTypes {
 
 export interface PostMainLikeTypes {
   post: PostWithProfile;
+}
+
+export interface PostUserCompTypes {
+  post: Post;
 }
