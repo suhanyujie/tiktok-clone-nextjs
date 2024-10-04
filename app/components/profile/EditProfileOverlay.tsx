@@ -7,10 +7,12 @@ import {
 import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import Link from 'next/link';
 import { SiSoundcharts } from 'react-icons/si';
-import { BiErrorCircle } from 'react-icons/bi';
+import { BiErrorCircle, BiLoaderCircle } from 'react-icons/bi';
 import { useRouter } from 'next/navigation';
 import { BsPencil } from 'react-icons/bs';
 import TextInput from '../TextInput';
+import { Cropper } from 'react-advanced-cropper';
+import 'react-advanced-cropper/dist/style.css';
 
 export default function EditProfileOverlay() {
   const router = useRouter();
@@ -26,14 +28,26 @@ export default function EditProfileOverlay() {
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState<ShowErrorObject | null>(null);
 
-  const getUploadImage = () => {
-    console.log('getUploadImage');
+  const getUploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files && event.target.files[0];
+
+    if (selectedFile) {
+      setFile(selectedFile);
+      setUploadImage(URL.createObjectURL(selectedFile));
+    } else {
+      setFile(null);
+      setUploadImage(null);
+    }
   };
   const showError = (type: string) => {
     if (error && Object.entries(error).length > 0 && error?.type == type) {
       return error.message;
     }
     return '';
+  };
+
+  const cropAndUpdateImage = () => {
+    console.log('cropAndUpdateImage');
   };
 
   return (
@@ -125,10 +139,101 @@ export default function EditProfileOverlay() {
                 <div
                   id="UserBioSection"
                   className="flex flex-col sm:h-[120px] px-1.5 py-2 mt-2 w-full"
-                ></div>
+                >
+                  <h3 className="font-semibold text-[15px] sm:mb-0 mb-1 text-gray-700 sm:w-[160px] sm:text-left text-center">
+                    Bio
+                  </h3>
+
+                  <div className="flex items-center justify-center sm:-mt-6">
+                    <div className="sm:w-[60%] w-full max-w-md">
+                      <textarea
+                        className="resize-none w-full bg-[#f1f1f2] text-gray-800 border border-gray-300 rounded-md py-2.5 px-3 focus:outline-none"
+                        cols={30}
+                        rows={4}
+                        onChange={(e) => setUserBio(e.target.value)}
+                        value={userBio || ''}
+                        maxLength={80}
+                      ></textarea>
+                      <p className="text-[11px] text-gray-500">
+                        {userBio ? userBio.length : 0}/80
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : (
-              <div></div>
+              <div className="w-full max-x-[420px] mx-auto bg-black circle-sencil">
+                <Cropper
+                  stencilProps={{ aspectRatio: 1 }}
+                  className="h-[400px]"
+                  onChange={(cropper) => setCropper(cropper.getCoordinates())}
+                  src={uploadedImage}
+                />
+              </div>
+            )}
+          </div>
+
+          <div
+            id="ButtonSection"
+            className="absolute p-5 left-0 bottom-0 border-t border-t-gray-300 w-full"
+          >
+            {!uploadedImage ? (
+              <div
+                id="UpdateInfoButtons"
+                className="flex items-center justify-end"
+              >
+                <button
+                  disabled={isUpdating}
+                  className="flex items-center border rounded-sm px-3 py-[6px] hover:bg-gray-100"
+                >
+                  <span className="px-2 font-medium text-[15px]">Cancel</span>
+                </button>
+
+                <button
+                  disabled={isUpdating}
+                  className="flex items-center bg-[#f02c56] text-white border rounded-md ml-3 px-3 py-[6px]"
+                >
+                  <span className="px-2 font-medium text-[15px]">
+                    {isUpdating ? (
+                      <BiLoaderCircle
+                        color="#ffffff"
+                        className="my-1 mx-2.5 animate-spin"
+                      />
+                    ) : (
+                      'Save'
+                    )}
+                  </span>
+                </button>
+              </div>
+            ) : (
+              <div
+                id="CropperButtons"
+                className="flex items-center justify-end"
+              >
+                <button
+                  onClick={() => setUploadImage(null)}
+                  disabled={isUpdating}
+                  className="flex items-center border rounded-sm px-3 py-[6px] hover:bg-gray-100"
+                >
+                  <span className="px-2 font-medium text-[15px]">Cancel</span>
+                </button>
+
+                <button
+                  onClick={() => cropAndUpdateImage()}
+                  className="flex items-center bg-[#f02c56] text-white border rounded-md ml-3 px-3 py-[6px]"
+                >
+                  <span className="px-2 font-medium text-[15px]">
+                    {isUpdating ? (
+                      <BiLoaderCircle
+                        color="#ffffff"
+                        className="my-1 mx-2.5 animate-spin"
+                      />
+                    ) : (
+                      'Apply'
+                    )}
+                  </span>
+                </button>
+              </div>
             )}
           </div>
         </div>
