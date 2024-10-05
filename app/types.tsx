@@ -98,3 +98,10 @@ export interface TextInputCompTypes {
   onUpdate: (newValue: string) => void;
   error: string;
 }
+
+export interface PostPageTypes {
+  params: {
+    userId: string;
+    postId: string;
+  };
+}
