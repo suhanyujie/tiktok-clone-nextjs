@@ -1,6 +1,7 @@
 'use client';
 
 import ClientOnly from '@/app/components/ClientOnly';
+import CommentsHeader from '@/app/components/post/CommentsHeader';
 import { PostPageTypes } from '@/app/types';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -14,6 +15,19 @@ export default function Post({ params }: PostPageTypes) {
   };
   const loopThroughPostDown = () => {
     console.log('loopThroughPostDown');
+  };
+
+  const postById = {
+    id: '1',
+    user_id: '1',
+    video_url: '/beach.mp4',
+    text: 'this is test video',
+    created_at: '20240928',
+    profile: {
+      user_id: '1',
+      name: 'User 1',
+      image: 'https://placehold.co/100',
+    },
   };
 
   return (
@@ -52,7 +66,7 @@ export default function Post({ params }: PostPageTypes) {
           />
 
           <ClientOnly>
-            {true ? (
+            {postById?.video_url ? (
               <video
                 src="/beach.mp4"
                 className="fixed object-cover w-full my-auto z-[0] h-screen"
@@ -71,6 +85,17 @@ export default function Post({ params }: PostPageTypes) {
                 ></video>
               ) : null}
             </div>
+          </ClientOnly>
+        </div>
+
+        <div
+          id="InfoSection"
+          className="lg:max-w-[550px] relative w-full h-full bg-white"
+        >
+          <div className="py-7" />
+
+          <ClientOnly>
+            {postById?.video_url ? <CommentsHeader post={postById} params={params} /> : null}
           </ClientOnly>
         </div>
       </div>

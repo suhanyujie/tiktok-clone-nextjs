@@ -105,3 +105,8 @@ export interface PostPageTypes {
     postId: string;
   };
 }
+
+export interface CommentsHeaderCompTypes {
+  params: { userId: string; postId: string };
+  post: PostWithProfile;
+}
