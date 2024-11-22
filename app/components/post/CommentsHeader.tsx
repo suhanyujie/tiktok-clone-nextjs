@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { BiLoaderCircle } from 'react-icons/bi';
-import { BsTrash3 } from 'react-icons/bs';
+import { BsChatDots, BsTrash3 } from 'react-icons/bs';
 import { ImMusic } from 'react-icons/im';
 import ClientOnly from '../ClientOnly';
 import { AiFillHeart } from 'react-icons/ai';
@@ -104,6 +104,13 @@ export default function CommentsHeader({
             </span>
           </div>
         </ClientOnly>
+
+        <div className="pb-4 text-center flex items-center">
+          <div className="rounded-full bg-gray-200 p-2 cursor-pointer">
+            <BsChatDots size={25} />
+          </div>
+          <span className="text-xs pl-2 text-gray-800 font-semibold">26</span>
+        </div>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import ClientOnly from '@/app/components/ClientOnly';
+import Comments from '@/app/components/post/Comments';
 import CommentsHeader from '@/app/components/post/CommentsHeader';
 import { PostPageTypes } from '@/app/types';
 import Link from 'next/link';
@@ -97,6 +98,7 @@ export default function Post({ params }: PostPageTypes) {
           <ClientOnly>
             {postById?.video_url ? <CommentsHeader post={postById} params={params} /> : null}
           </ClientOnly>
+          <Comments params={params}/>
         </div>
       </div>
     </>

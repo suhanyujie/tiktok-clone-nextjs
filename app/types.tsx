@@ -59,6 +59,19 @@ export interface Post {
   created_at: string;
 }
 
+export interface CommentWithProfile {
+  id: string;
+  user_id: string;
+  post_id: string;
+  text: string;
+  created_at: string;
+  profile: {
+    user_id: string;
+    name: string;
+    image: string;
+  };
+}
+
 // Layout Include Types
 export interface MenuItemTypes {
   iconString: string;
@@ -109,4 +122,13 @@ export interface PostPageTypes {
 export interface CommentsHeaderCompTypes {
   params: { userId: string; postId: string };
   post: PostWithProfile;
+}
+
+export interface CommentsCompTypes {
+  params: { userId: string; postId: string };
+}
+
+export interface SingleCommentCompTypes {
+  comment: CommentWithProfile;
+  params: { userId: string; postId: string };
 }
