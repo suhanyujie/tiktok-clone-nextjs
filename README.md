@@ -5,6 +5,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - https://github.com/John-Weeks-Dev/tiktok-clone-nextjs
   - https://www.youtube.com/watch?v=7zLyVzItZlQ
 - https://github.com/rtdui/rtdui
+- ubuntu vscode setting for custom menu bar: https://developer.aliyun.com/article/996980
 
 ## Getting Started
 
